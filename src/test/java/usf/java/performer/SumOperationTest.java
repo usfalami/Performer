@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-public class OperationExecutorTest {
-	
+public class SumOperationTest {
+
 	@Test
 	public void test1() {
 		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
@@ -25,12 +25,12 @@ public class OperationExecutorTest {
 		int sum = OperationExecutor.execute(op, list);
 		TestCase.assertEquals(sum, 0);
 	}
-	
+
 	@Test
 	public void test3() {
 
 		Operation<Integer, Integer> op = new SumOperation();
-		
+
 		List<List<Integer>>lists = Arrays.asList(
 				Arrays.asList(1, 2, 3, 4, 5),	//col1
 				Arrays.asList(1, 2, 3, 4, 5),	//col2
@@ -45,42 +45,42 @@ public class OperationExecutorTest {
 			TestCase.assertEquals(sum, res += 5);
 		}
 	}
-	
+
 	@Test
 	public void test4() {
 		Operation<Integer, Integer> op = new SumOperation();
-		
+
 		List<List<Integer>>lists = Arrays.asList(
 				Arrays.asList(0)
-			);
+				);
 		Collection<Integer> sumList = OperationExecutor.execute(op, lists);
 		TestCase.assertEquals(sumList.size(), 1);
 		int sum = sumList.iterator().next();
 		TestCase.assertEquals(sum, 0);
 	}
-	
+
 	@Test
 	public void test5() {
 
 		Operation<Integer, Integer> opRow = new SumOperation();
 		Operation<Integer, Integer> opCol = new SumOperation();
-		
+
 		List<List<Integer>>lists = Arrays.asList(
-				Arrays.asList(1, 2, 3, 4, 5),
-				Arrays.asList(1, 2, 3, 4, 5),
-				Arrays.asList(1, 2, 3, 4, 5),
-				Arrays.asList(1, 2, 3, 4, 5),
-				Arrays.asList(1, 2, 3, 4, 5)
+				Arrays.asList(1, 2, 3, 4, 5),	//col1
+				Arrays.asList(1, 2, 3, 4, 5),	//col2
+				Arrays.asList(1, 2, 3, 4, 5),	//col3
+				Arrays.asList(1, 2, 3, 4, 5),	//col4
+				Arrays.asList(1, 2, 3, 4, 5)	//col4
 			);
 		int sum = OperationExecutor.execute(opRow, opCol, lists);
 		TestCase.assertEquals(sum, 75);
 	}
-	
+
 	@Test
 	public void test6() {
 		Operation<Integer, Integer> opRow = new SumOperation();
 		Operation<Integer, Integer> opCol = new SumOperation();
-		
+
 		List<List<Integer>>lists = Arrays.asList(
 				Arrays.asList(0)
 			);

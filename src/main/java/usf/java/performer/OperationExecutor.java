@@ -6,11 +6,22 @@ import java.util.List;
 
 public class OperationExecutor {
 
-	protected static <P, R> R execute(Operation<P, R> operation, Collection<P> list){
+	public static <P, R> R execute(Operation<P, R> operation, Collection<P> list){
 		Iterator<P> it = list.iterator();
 		operation.processFirst(it.next());
 		for(int i=1; it.hasNext(); i++)
 			operation.process(i, it.next());
+		return operation.getResult();
+	}
+
+	public static <P, R> R execute(SubListOperation<P, R> operation, Collection<P> list, int subSize){
+		Iterator<P> it = list.iterator();
+		for(int i=0; it.hasNext();) {
+			operation.processFirst(it.next()); i++;
+			for(int j=1; j<subSize; j++, i++)
+				operation.process(i, it.next());
+			operation.endPart();
+		}
 		return operation.getResult();
 	}
 
@@ -37,5 +48,5 @@ public class OperationExecutor {
 	public static <P, R> Collection<R> execute(Operation<P, R> operation, List<List<P>> lists){
 		return execute(operation, new ListResolver<R>(), lists);
 	}
-
+	
 }
