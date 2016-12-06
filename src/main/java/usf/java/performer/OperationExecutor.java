@@ -19,13 +19,15 @@ public class OperationExecutor {
 		int rows = lists.get(0).size(), cols = lists.size(), i=0;
 
 		//process first
-		for(int j=0; j<cols; j++)
+		operation.processFirst(lists.get(0).get(i));
+		for(int j=1; j<cols; j++)
 			operation.process(i, lists.get(j).get(i));
 		resolver.processFirst(operation.getResult());
 		
 		//process list
 		for(i=1; i<rows; i++){
-			for(int j=0; j<cols; j++)
+			operation.processFirst(lists.get(0).get(i));
+			for(int j=1; j<cols; j++)
 				operation.process(i, lists.get(j).get(i));
 			resolver.process(i, operation.getResult());
 		}
