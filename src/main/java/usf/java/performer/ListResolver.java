@@ -3,6 +3,8 @@ package usf.java.performer;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import usf.java.performer.Operation;
+
 public class ListResolver<R> implements Operation<R, Collection<R>>  {
 	
 	private Collection<R> result;

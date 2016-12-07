@@ -14,6 +14,17 @@ public class OperationExecutor {
 		return operation.getResult();
 	}
 
+	public static <P, R> R execute(SubListOperation<P, R> operation, Collection<P> list, int subSize){
+		Iterator<P> it = list.iterator();
+		for(int i=0; it.hasNext();) {
+			operation.processFirst(it.next()); i++;
+			for(int j=1; j<subSize; j++, i++)
+				operation.process(i, it.next());
+			operation.endPart();
+		}
+		return operation.getResult();
+	}
+
 	public static <P, T, R> R execute(Operation<P, T> operation, Operation<T, R> resolver, List<List<P>> lists){
 
 		int rows = lists.get(0).size(), cols = lists.size(), i=0;
@@ -37,5 +48,5 @@ public class OperationExecutor {
 	public static <P, R> Collection<R> execute(Operation<P, R> operation, List<List<P>> lists){
 		return execute(operation, new ListResolver<R>(), lists);
 	}
-
+	
 }
