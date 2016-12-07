@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import usf.java.performer.runnable.ListResolver;
 import usf.java.performer.runnable.Operation;
 import usf.java.performer.runnable.SubListOperation;
 
