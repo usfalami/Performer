@@ -1,6 +1,6 @@
 package usf.java.performer.samples;
 
-import usf.java.performer.Operation;
+import usf.java.performer.runnable.Operation;
 
 public class SumOperation implements Operation<Integer, Integer> {
 

@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 import junit.framework.TestCase;
-import usf.java.performer.Operation;
 import usf.java.performer.OperationExecutor;
+import usf.java.performer.runnable.Operation;
 import usf.java.performer.samples.SumOperation;
 
 public class SumOperationTest {

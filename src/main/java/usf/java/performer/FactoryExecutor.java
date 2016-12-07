@@ -3,6 +3,8 @@ package usf.java.performer;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import usf.java.performer.runnable.Factory;
+
 public class FactoryExecutor {
 	
 	protected static <T> Collection<T> createList(int column, Factory<T> factory, FactoryConfiguration fc) {

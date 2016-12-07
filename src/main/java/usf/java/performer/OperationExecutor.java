@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import usf.java.performer.runnable.Operation;
+import usf.java.performer.runnable.SubListOperation;
+
 public class OperationExecutor {
 
 	public static <P, R> R execute(Operation<P, R> operation, Collection<P> list){

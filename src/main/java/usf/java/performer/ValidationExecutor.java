@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import usf.java.performer.runnable.Validation;
+
 public class ValidationExecutor {
 
 	public static <P> boolean execute(Validation<P> test, Collection<P> list){

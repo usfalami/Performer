@@ -1,6 +1,6 @@
 package usf.java.performer.samples;
 
-import usf.java.performer.Validation;
+import usf.java.performer.runnable.Validation;
 
 public class PosetifNumberValidation implements Validation<Integer> {
 

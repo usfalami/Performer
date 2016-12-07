@@ -133,7 +133,7 @@ public class PosetifNumberValidationTest {
 	
 		List<Integer> list = Arrays.asList(values);
 
-		usf.java.performer.Validation<Integer> op = new PosetifNumberValidation();
+		usf.java.performer.runnable.Validation<Integer> op = new PosetifNumberValidation();
 		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0; 
@@ -148,7 +148,7 @@ public class PosetifNumberValidationTest {
 		for(int i=0; i<values.length; i++)
 			list.add(Arrays.asList(values[i]));
 
-		usf.java.performer.Validation<Integer> op = new PosetifNumberValidation();
+		usf.java.performer.runnable.Validation<Integer> op = new PosetifNumberValidation();
 		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0, j = 0; 
