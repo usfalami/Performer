@@ -1,4 +1,4 @@
-package usf.java.performer;
+package usf.java.performer.samples;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.Test;
 
 import junit.framework.TestCase;
+import usf.java.performer.ValidationExecutor;
+import usf.java.performer.samples.PosetifNumberValidation;
 
 public class PosetifNumberValidationTest {
 	
