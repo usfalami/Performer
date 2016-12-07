@@ -1,6 +1,6 @@
 package usf.java.performer;
 
-public class PosetifNumberTest implements Test<Integer> {
+public class PosetifNumberValidation implements Validation<Integer> {
 
 	@Override
 	public boolean processFirst(Integer obj) {

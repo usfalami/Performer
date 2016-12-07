@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-public class TestExecutorTest {
+public class PosetifNumberValidationTest {
 	
 	@Test
 	public void test1() {
@@ -131,8 +131,8 @@ public class TestExecutorTest {
 	
 		List<Integer> list = Arrays.asList(values);
 
-		usf.java.performer.Test<Integer> op = new PosetifNumberTest();
-		boolean result = TestExecutor.execute(op, list);
+		usf.java.performer.Validation<Integer> op = new PosetifNumberValidation();
+		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0; 
 		while(i<values.length && values[i]>=0) i++;
@@ -146,8 +146,8 @@ public class TestExecutorTest {
 		for(int i=0; i<values.length; i++)
 			list.add(Arrays.asList(values[i]));
 
-		usf.java.performer.Test<Integer> op = new PosetifNumberTest();
-		boolean result = TestExecutor.execute(op, list);
+		usf.java.performer.Validation<Integer> op = new PosetifNumberValidation();
+		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0, j = 0; 
 		while(i<values.length && values[i][j]>=0){

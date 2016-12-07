@@ -1,6 +1,6 @@
 package usf.java.performer;
 
-public interface Test<P> extends Performer {
+public interface Validation<P> extends Performer {
 
 	boolean processFirst(P obj);
 

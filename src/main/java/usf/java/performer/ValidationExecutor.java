@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class TestExecutor {
+public class ValidationExecutor {
 
-	protected static <P> boolean execute(Test<P> test, Collection<P> list){
+	protected static <P> boolean execute(Validation<P> test, Collection<P> list){
 		Iterator<P> it = list.iterator();
 		if(!test.processFirst(it.next()))
 			return false;
@@ -16,7 +16,7 @@ public class TestExecutor {
 		return true;
 	}
 
-	public static <P> boolean execute(Test<P> test, List<List<P>> lists){
+	public static <P> boolean execute(Validation<P> test, List<List<P>> lists){
 
 		int rows = lists.get(0).size(), cols = lists.size();
 
