@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OperationExecutor {
 
-	protected static <P, R> R execute(Operation<P, R> operation, Collection<P> list){
+	public static <P, R> R execute(Operation<P, R> operation, Collection<P> list){
 		Iterator<P> it = list.iterator();
 		operation.processFirst(it.next());
 		for(int i=1; it.hasNext(); i++)

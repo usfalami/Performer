@@ -1,6 +1,6 @@
 package usf.java.performer;
 
-public interface Operation<P, R> {
+public interface Operation<P, R> extends Performer  {
 	
 	void processFirst(P obj);
 
