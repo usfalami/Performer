@@ -9,8 +9,16 @@ public class FactoryExecutor {
 	
 	protected static <T> List<T> createList(int column, Factory<T> factory, FactoryConfiguration fc) {
 		List<T> result = new ArrayList<>(fc.getRows());
-		for(int i=0; i< fc.getRows(); i++)
-			result.add(factory.create(i, column));
+		if(fc.isNullInjection()) {
+			for(int i=0; i< fc.getRows(); i++){
+				T obj = fc.nullable() ? null : factory.create(i, column);
+				result.add(obj);
+			}
+		}
+		else{
+			for(int i=0; i< fc.getRows(); i++)
+				result.add(factory.create(i, column));
+		}
 		return result;
 	}
 	

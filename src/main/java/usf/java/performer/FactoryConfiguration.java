@@ -5,7 +5,7 @@ import java.util.Random;
 public class FactoryConfiguration {
 
 	private int columns, rows;
-	private boolean nullable;
+	private boolean nullInjection;
 	
 	public static final FactoryConfiguration DEFAULT = new FactoryConfiguration(10, 5, false);
 	
@@ -18,10 +18,10 @@ public class FactoryConfiguration {
 		this.columns = columns;
 	}
 	
-	public FactoryConfiguration(int rows, int columns, boolean nullable) {
+	public FactoryConfiguration(int rows, int columns, boolean nullInjection) {
 		this.rows = rows;
 		this.columns = columns;
-		this.nullable = nullable;
+		this.nullInjection = nullInjection;
 	}
 
 	public int getColumns() {
@@ -38,15 +38,19 @@ public class FactoryConfiguration {
 		this.rows = rows;
 	}
 
-	public boolean isNullable() {
-		return nullable;
+	public boolean isNullInjection() {
+		return nullInjection;
 	}
-	public void setNullable(boolean nullable) {
-		this.nullable = nullable;
+	public void setNullInjection(boolean nullable) {
+		this.nullInjection = nullable;
 	}
 	
-	private static int random(int min, int max){
-		return (Math.abs(new Random().nextInt()) % (max - min)) + min;
+	public boolean nullable() {
+		return Math.abs(new Random().nextInt()) % 1000 <= 5;
+	}
+	
+	protected static int random(int min, int max){
+		return (Math.abs(new Random().nextInt()) % (max-min+1)) + min;
 	}
 	
 	public static final FactoryConfiguration randomConfiguration(int maxRow, int maxList){
