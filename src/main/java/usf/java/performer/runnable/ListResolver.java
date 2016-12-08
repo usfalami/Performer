@@ -1,9 +1,7 @@
-package usf.java.performer;
+package usf.java.performer.runnable;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import usf.java.performer.runnable.Operation;
 
 public class ListResolver<R> implements Operation<R, Collection<R>>  {
 	

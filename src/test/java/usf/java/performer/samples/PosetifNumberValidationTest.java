@@ -149,7 +149,7 @@ public class PosetifNumberValidationTest {
 			list.add(Arrays.asList(values[i]));
 
 		Validation<Integer> op = new PosetifNumberValidation();
-		boolean result = ValidationExecutor.execute(op, list);
+		boolean result = ValidationExecutor.executeOnColumns(op, list);
 		
 		int i = 0, j = 0; 
 		while(i<values.length && values[i][j]>=0){

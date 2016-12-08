@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import usf.java.performer.runnable.ListResolver;
 import usf.java.performer.runnable.Operation;
 import usf.java.performer.runnable.SubListOperation;
 
@@ -16,7 +17,7 @@ public class OperationExecutor {
 			operation.process(i, it.next());
 		return operation.getResult();
 	}
-
+	
 	public static <P, R> R execute(SubListOperation<P, R> operation, Collection<P> list, int subSize){
 		Iterator<P> it = list.iterator();
 		for(int i=0; it.hasNext();) {
@@ -27,7 +28,7 @@ public class OperationExecutor {
 		}
 		return operation.getResult();
 	}
-
+	
 	public static <P, T, R> R execute(Operation<P, T> operation, Operation<T, R> resolver, List<List<P>> lists){
 
 		int rows = lists.get(0).size(), cols = lists.size(), i=0;
@@ -51,5 +52,5 @@ public class OperationExecutor {
 	public static <P, R> Collection<R> execute(Operation<P, R> operation, List<List<P>> lists){
 		return execute(operation, new ListResolver<R>(), lists);
 	}
-	
+
 }
