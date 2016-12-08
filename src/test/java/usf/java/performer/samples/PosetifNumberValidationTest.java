@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 import usf.java.performer.ValidationExecutor;
-import usf.java.performer.samples.PosetifNumberValidation;
+import usf.java.performer.runnable.Validation;
 
 public class PosetifNumberValidationTest {
 	
@@ -133,7 +133,7 @@ public class PosetifNumberValidationTest {
 	
 		List<Integer> list = Arrays.asList(values);
 
-		usf.java.performer.runnable.Validation<Integer> op = new PosetifNumberValidation();
+		Validation<Integer> op = new PosetifNumberValidation();
 		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0; 
@@ -148,7 +148,7 @@ public class PosetifNumberValidationTest {
 		for(int i=0; i<values.length; i++)
 			list.add(Arrays.asList(values[i]));
 
-		usf.java.performer.runnable.Validation<Integer> op = new PosetifNumberValidation();
+		Validation<Integer> op = new PosetifNumberValidation();
 		boolean result = ValidationExecutor.execute(op, list);
 		
 		int i = 0, j = 0; 
