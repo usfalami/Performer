@@ -8,7 +8,7 @@ import usf.java.performer.runnable.Factory;
 public class FactoryExecutor {
 	
 	protected static <T> List<T> createList(int column, Factory<T> factory, FactoryConfiguration fc) {
-		List<T> result = new ArrayList<>();
+		List<T> result = new ArrayList<>(fc.getRows());
 		for(int i=0; i< fc.getRows(); i++)
 			result.add(factory.create(i, column));
 		return result;
@@ -26,7 +26,7 @@ public class FactoryExecutor {
 	
 	public static <T> List<List<T>> createMatrix(Factory<T> factory, FactoryConfiguration fc) {
 		if(factory == null || fc == null) return null;
-		List<List<T>> result = new ArrayList<>();
+		List<List<T>> result = new ArrayList<>(fc.getColumns());
 		for(int i=0; i<fc.getColumns(); i++)
 			result.add(createList(i, factory, fc));
 		return result;
