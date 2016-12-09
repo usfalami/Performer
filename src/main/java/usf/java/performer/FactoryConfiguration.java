@@ -4,18 +4,17 @@ import java.util.Random;
 
 public class FactoryConfiguration {
 
+	public static final FactoryConfiguration DEFAULT = new FactoryConfiguration(10, 5, false);
+
 	private int columns, rows;
 	private boolean nullInjection;
 	
-	public static final FactoryConfiguration DEFAULT = new FactoryConfiguration(10, 5, false);
-	
 	public FactoryConfiguration(int rows) {
-		this.rows = rows;
+		this(rows, 1, false);
 	}
 	
 	public FactoryConfiguration(int rows, int columns) {
-		this.rows = rows;
-		this.columns = columns;
+		this(rows, columns, false);
 	}
 	
 	public FactoryConfiguration(int rows, int columns, boolean nullInjection) {
@@ -46,7 +45,14 @@ public class FactoryConfiguration {
 	}
 	
 	public <T> T nullable(T obj) {
-		return Math.abs(new Random().nextInt()) % 1000 > 5 ? obj : null;
+		return Math.abs(new Random().nextInt()) % 100 > 5 ? obj : null;
+	}
+	
+	protected int random(int poucentage){
+		int size = rows * columns + 1;
+		int pct = poucentage * size/100 + 1;
+		System.out.println(size + " " + pct);
+		return pct;
 	}
 	
 	protected static int random(int min, int max){

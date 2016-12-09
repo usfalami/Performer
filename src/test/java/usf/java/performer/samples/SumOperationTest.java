@@ -41,7 +41,7 @@ public class SumOperationTest {
 				Arrays.asList(1, 2, 3, 4, 5),	//col4
 				Arrays.asList(1, 2, 3, 4, 5)	//col4
 			);
-		Collection<Integer> sumList = OperationExecutor.execute(op, lists);
+		Collection<Integer> sumList = OperationExecutor.executeoOnRows(op, lists);
 		TestCase.assertEquals(sumList.size(), 5);
 		int res = 0;
 		for(int sum : sumList) {
@@ -56,7 +56,7 @@ public class SumOperationTest {
 		List<List<Integer>>lists = Arrays.asList(
 				Arrays.asList(0)
 				);
-		Collection<Integer> sumList = OperationExecutor.execute(op, lists);
+		Collection<Integer> sumList = OperationExecutor.executeoOnRows(op, lists);
 		TestCase.assertEquals(sumList.size(), 1);
 		int sum = sumList.iterator().next();
 		TestCase.assertEquals(sum, 0);
@@ -75,7 +75,7 @@ public class SumOperationTest {
 				Arrays.asList(1, 2, 3, 4, 5),	//col4
 				Arrays.asList(1, 2, 3, 4, 5)	//col4
 			);
-		int sum = OperationExecutor.execute(opRow, opCol, lists);
+		int sum = OperationExecutor.executeOnRows(opRow, opCol, lists);
 		TestCase.assertEquals(sum, 75);
 	}
 
@@ -87,7 +87,7 @@ public class SumOperationTest {
 		List<List<Integer>>lists = Arrays.asList(
 				Arrays.asList(0)
 			);
-		int sum = OperationExecutor.execute(opRow, opCol, lists);
+		int sum = OperationExecutor.executeOnRows(opRow, opCol, lists);
 		TestCase.assertEquals(sum, 0);
 	}
 

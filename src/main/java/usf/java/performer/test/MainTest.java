@@ -1,31 +1,41 @@
 package usf.java.performer.test;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
+import usf.java.performer.FactoryConfiguration;
+import usf.java.performer.FactoryExecutor;
 import usf.java.performer.OperationExecutor;
+import usf.java.performer.runnable.Factory;
 import usf.java.performer.runnable.Operation;
 
 public class MainTest {
 	
 	public static void main(String[] args) {
 		
-		ArrayPrinter<String> op = new ArrayPrinter<>();
-
-		System.out.println("1d Array printer");
-
-		OperationExecutor.execute(op, Arrays.asList(
-				"COL1.1", "COL1.2", "COL1.3", "COL1.4"));
+		FactoryConfiguration config = new FactoryConfiguration(20, 2, false);
+		Factory<Integer> factory = new SequencialIntFactory();
 		
-		System.out.println("\n\n2d Array printer");
+		ArrayPrinter<Integer> op = new ArrayPrinter<>();
+
+		List<Integer> list = FactoryExecutor.createList(factory, config);
+		System.out.println("1D Array printer");
+		OperationExecutor.execute(op, list);
 		
-		OperationExecutor.execute(op, Arrays.asList(
-				Arrays.asList("COL1.1", "COL1.2", "COL1.3", "COL1.4"),
-				Arrays.asList("COL2.1", "COL2.2", "COL2.3", "COL2.4"),
-				Arrays.asList("COL3.1", "COL3.2", "COL3.3", "COL3.4"),
-				Arrays.asList("COL4.1", "COL4.2", "COL4.3", "COL4.4")
-			));
+		config.setNullInjection(true);
+		
+		List<List<Integer>> lists = FactoryExecutor.createMatrix(factory, config);
+		System.out.println("\n\n2D Array printer");
+		OperationExecutor.executeoOnRows(op, lists);
+		
+
+		System.out.println("\n\n2D Array printer");
+		
+		OperationExecutor.executeOnColumns(op, lists);
 		
 	}
+	
+	//operation sample
 	
 	public static class ArrayPrinter<T> implements Operation<T, Void>{
 
@@ -37,7 +47,7 @@ public class MainTest {
 
 		@Override
 		public void process(int row, T obj) {
-			System.out.format("%-15s", obj);
+			System.out.format("%-10s", obj);
 		}
 		
 		@Override
@@ -45,6 +55,18 @@ public class MainTest {
 			return null;
 		}
 		
+	}
+	
+	// factory sample
+	
+	public static class SequencialIntFactory implements Factory<Integer> {
+		
+		private int start = new Random().nextInt() % 10;
+		
+		@Override
+		public Integer create(int row, int col) {
+			return start++;
+		}
 	}
 
 }

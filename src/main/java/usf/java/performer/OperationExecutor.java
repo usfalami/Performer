@@ -29,7 +29,7 @@ public class OperationExecutor {
 		return operation.getResult();
 	}
 	
-	public static <P, T, R> R execute(Operation<P, T> operation, Operation<T, R> resolver, List<List<P>> lists){
+	public static <P, T, R> R executeOnRows(Operation<P, T> operation, Operation<T, R> resolver, List<List<P>> lists){
 
 		int rows = lists.get(0).size(), cols = lists.size(), i=0;
 
@@ -49,8 +49,38 @@ public class OperationExecutor {
 		return resolver.getResult();
 	}
 	
-	public static <P, R> Collection<R> execute(Operation<P, R> operation, List<List<P>> lists){
-		return execute(operation, new ListResolver<R>(), lists);
+	
+	public static <P, T, R, C extends List<P>> R executeOnColumns(Operation<P, T> operation, Operation<T, R> resolver, List<C> lists){
+
+		int cols = lists.size(), i=0;
+		
+		//process first
+		C column = lists.get(i);
+		operation.processFirst(column.get(0));
+		for(int j=1; j<column.size(); j++)
+			//process list
+			operation.process(j, column.get(j));
+		resolver.processFirst(operation.getResult());
+	
+		for(i=1; i<cols; i++){
+			//process first
+			column = lists.get(i);
+			operation.processFirst(column.get(0));
+			for(int j=1; j<column.size(); j++)
+				//process list
+				operation.process(j, column.get(j));
+			resolver.process(i, operation.getResult());
+		}
+		return resolver.getResult();
+	}
+	
+	
+	public static <P, R> Collection<R> executeoOnRows(Operation<P, R> operation, List<List<P>> lists){
+		return executeOnRows(operation, new ListResolver<R>(), lists);
+	}
+	
+	public static <P, R> Collection<R> executeOnColumns(Operation<P, R> operation, List<List<P>> lists){
+		return executeOnColumns(operation, new ListResolver<R>(), lists);
 	}
 
 }
