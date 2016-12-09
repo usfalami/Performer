@@ -11,7 +11,7 @@ public class FactoryExecutor {
 		List<T> result = new ArrayList<>(fc.getRows());
 		if(fc.isNullInjection()) {
 			for(int i=0; i< fc.getRows(); i++){
-				T obj = fc.nullable() ? null : factory.create(i, column);
+				T obj = fc.nullable(factory.create(i, column));
 				result.add(obj);
 			}
 		}

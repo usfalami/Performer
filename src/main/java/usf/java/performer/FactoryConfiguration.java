@@ -45,8 +45,8 @@ public class FactoryConfiguration {
 		this.nullInjection = nullable;
 	}
 	
-	public boolean nullable() {
-		return Math.abs(new Random().nextInt()) % 1000 <= 5;
+	public <T> T nullable(T obj) {
+		return Math.abs(new Random().nextInt()) % 1000 > 5 ? obj : null;
 	}
 	
 	protected static int random(int min, int max){
